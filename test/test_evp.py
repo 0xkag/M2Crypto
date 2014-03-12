@@ -369,7 +369,13 @@ class PBKDF2TestCase(unittest.TestCase):
         keylen = 16
         ret = EVP.pbkdf2(password, salt, iter, keylen)
         self.assertEqual(hexlify(ret), '6A 89 70 BF 68 C9 2C AE A8 4A 8D F2 85 10 85 86'.replace(' ', '').lower())
-        
+
+        password = 'All n-entities must communicate with other n-entities via n-1 entiteeheehees'
+        salt = unhexlify('12 34 56 78 78 56 34 12'.replace(' ', ''))
+        iter = 10000
+        keylen = 128
+        ret = EVP.pbkdf2(password, salt, iter, keylen)
+        self.assertEqual(hexlify(ret), '3cc746053c6a67c8a9188643abdbe3e3604536a76e89e4405627acc345326c2e2568fc6d6ae8865eb046288e819fa58be55c6afd050f6e5c9fc57e259eecd734836ebc3b4dacbe2385980de9e862938ba7889591ad8400c385e22c832285a1f6321dd7462c668df2b2205cd36ff555f825e753c00be0d2c9cd744a8a9adda333')
 
 class HMACTestCase(unittest.TestCase):
     data1=['', 'More text test vectors to stuff up EBCDIC machines :-)', \
